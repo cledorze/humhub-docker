@@ -1,3 +1,56 @@
+# Fork => Helm 
+1 - moving link to port expose in the docker-compose.yaml 
+2 - 
+```
+version: '3.1'
+services:
+  humhub:
+    build: .
+    #    links:
+    #  - "db:db"
+    ports:
+      - "80:80"
+    volumes:
+      - "_data/config:/var/www/localhost/htdocs/protected/config"
+      - "_data/uploads:/var/www/localhost/htdocs/protected/uploads"
+  db:
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: humhub
+    ports:
+      - "3600:3600"
+```
+3 - using podman-compose 
+git clone https://github.com/muayyad-alsadi/podman-compose
+cd podman-compose
+4 - ./podman_compose.py -t 1podfw -f ../docker-compose.yml up
+=> FAIL
+
+1) podman run -d --name humhub_db -p 3600:3600 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=humhub mariadb:10.2
+2) podman run -d --name humhub -p 80:80 mriedmann/humhub:1.2.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Alpine-based PHP-FPM and NGINX HumHub docker-container
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e2c25ed0c4ce479aa9a97be05d1d5b20)](https://app.codacy.com/app/mriedmann/humhub-docker?utm_source=github.com&utm_medium=referral&utm_content=mriedmann/humhub-docker&utm_campaign=Badge_Grade_Dashboard)
