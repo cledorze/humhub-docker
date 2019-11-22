@@ -19,7 +19,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: humhub
     ports:
-      - "3600:3600"
+      - "3306:3306"
 ```
 3 - using podman-compose 
 git clone https://github.com/muayyad-alsadi/podman-compose
@@ -27,7 +27,7 @@ cd podman-compose
 4 - ./podman_compose.py -t 1podfw -f ../docker-compose.yml up
 => FAIL
 
-1) podman run -d --name humhub_db -p 3600:3600 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=humhub mariadb:10.2
+1) podman run -d --name humhub_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=humhub mariadb:10.2
 2) podman run -d --name humhub -p 80:80 mriedmann/humhub:1.2.0
 
 
